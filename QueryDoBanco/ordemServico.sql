@@ -42,7 +42,13 @@ insert into usuarios(idUsuario, usuario, teleUsuario, login, senha)
  create table TbOs(
  ordemServ int primary key auto_increment,
  dataOs timestamp default current_timestamp,
- 
+ equipamento varchar(150) not null,
+ defeito varchar(150) not null,
+ servico varchar(150),
+ tecnico varchar(55),
+ precoServico decimal(10,2),
+ idClienteOs int not null,
+ foreign key(idClienteOs) references clientes(idCliente)
  
  );
  
