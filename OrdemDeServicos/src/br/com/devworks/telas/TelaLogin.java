@@ -58,8 +58,8 @@ public class TelaLogin extends javax.swing.JFrame {
             //se tiver usuario E senkha correspondente
             if (rs.next()) {
                 
-                
-       
+                TelaPrincipal principal = new TelaPrincipal();
+                principal.setVisible(true);
                     
                     //fecha tela de login
                 this.dispose();
