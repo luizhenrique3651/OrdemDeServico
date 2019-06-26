@@ -21,8 +21,8 @@ insert into usuarios(idUsuario, usuario, teleUsuario, login, senha)
  values(1, 'Luiz Henrique', '92061441', 'luiz.albuquerque', 'luiz123');
  
  
- insert into usuarios(usuario, teleUsuario, login, senha)
- values('Luiz Henrique', '92061441', 'luiz.admin', 'luiz123');
+ insert into usuarios(idUsuario, usuario, teleUsuario, login, senha)
+ values(2, 'Luiz Henrique', '92061441', 'luiz.admin', 'luiz123');
  
  
  create table clientes(
@@ -30,11 +30,11 @@ insert into usuarios(idUsuario, usuario, teleUsuario, login, senha)
  nomeCliente varchar(55) not null,
  enderecoCliente varchar(100),
  foneCliente varchar(15),
- emailCiente varchar(55)
+ emailCliente varchar(55)
  );
  
  
- insert into clientes (nomeCliente, enderecoCliente, foneCliente, emailCiente) values ('Tosvaldo Linuquis', 'rua Tux', '1234567', 'linuquis@tosvaldo');
+ insert into clientes (nomeCliente, enderecoCliente, foneCliente, emailCliente) values ('Tosvaldo Linuquis', 'rua Tux', '1234567', 'linuquis@tosvaldo');
  
  select * from clientes;
  
@@ -52,3 +52,15 @@ insert into usuarios(idUsuario, usuario, teleUsuario, login, senha)
  
  );
  
+insert into TbOs(equipamento, defeito, servico, tecnico, precoServico, idClienteOs) values ("Notebook bolado", "GPU fdd", "rebailing", "zéza1", 200, 1);
+select * from TbOs;
+
+-- o codigo abaixo traz info de duas tabelas
+
+select
+O.ordemServ, equipamento, 
+defeito, servico, precoServico,
+C.nomeCliente, foneCliente
+from TbOs as O
+inner join clientes as C
+on (O.idClienteOs = C.idcliente);
