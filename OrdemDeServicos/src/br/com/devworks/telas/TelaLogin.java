@@ -63,6 +63,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     
                     //fecha tela de login
                 this.dispose();
+                conexao.close();
                 
                 
             } else {
