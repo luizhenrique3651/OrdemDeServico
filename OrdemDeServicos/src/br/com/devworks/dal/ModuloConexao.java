@@ -18,7 +18,7 @@ public class ModuloConexao {
    String url = "jdbc:mysql://localhost:3306/dbOrdemServico?useSSL=true";
    String user = "luiz";
    String password = "luiz123";
-   //atrapalhar a conexao com banco agora
+ 
    //try catch para tentar realizar a conexao e se nao for possivel, retornar exceção
        try {
            Class.forName(driver);
