@@ -8,6 +8,7 @@ package br.com.devworks.telas;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -75,6 +76,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblData.setText("Data");
 
         menuCadastro.setText("Cadastro");
+        menuCadastro.setEnabled(false);
 
         menCadCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
         menCadCli.setText("Cliente");
@@ -99,6 +101,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menRelServ.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
         menRelServ.setText("Serviços");
+        menRelServ.setEnabled(false);
         menRel.add(menRelServ);
 
         Menu.add(menRel);
@@ -107,6 +110,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menAjudaSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         menAjudaSobre.setText("Sobre");
+        menAjudaSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menAjudaSobreActionPerformed(evt);
+            }
+        });
         menAjuda.add(menAjudaSobre);
 
         Menu.add(menAjuda);
@@ -164,7 +172,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menCadCliActionPerformed
 
     private void menOpcSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menOpcSairActionPerformed
-        // TODO add your handling code here:
+        // gerar tela de confirmação para sair
+       int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Atenção!", JOptionPane.YES_NO_OPTION);
+       
+       if(sair == JOptionPane.YES_OPTION){
+       System.exit(0);
+       }
     }//GEN-LAST:event_menOpcSairActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -173,6 +186,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         DateFormat formata = DateFormat.getDateInstance(DateFormat.SHORT);
         lblData.setText(formata.format(data));
     }//GEN-LAST:event_formWindowActivated
+
+    private void menAjudaSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menAjudaSobreActionPerformed
+        // Chamando a tela de sobre
+        TelaSobre sobre = new TelaSobre();
+        sobre.setVisible(true);
+    }//GEN-LAST:event_menAjudaSobreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,7 +242,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menOpc;
     private javax.swing.JMenuItem menOpcSair;
     private javax.swing.JMenu menRel;
-    private javax.swing.JMenuItem menRelServ;
-    private javax.swing.JMenu menuCadastro;
+    public static javax.swing.JMenuItem menRelServ;
+    public static javax.swing.JMenu menuCadastro;
     // End of variables declaration//GEN-END:variables
 }
