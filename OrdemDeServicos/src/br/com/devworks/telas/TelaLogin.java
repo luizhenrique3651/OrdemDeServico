@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package br.com.devworks.telas;
+
 import java.sql.*;
 import br.com.devworks.dal.ModuloConexao;
 import javax.swing.JOptionPane;
@@ -12,79 +13,85 @@ import javax.swing.JOptionPane;
  *
  * @author luiz
  */
-
 public class TelaLogin extends javax.swing.JFrame {
-    
-        Connection conexao = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        
+
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
 
     public TelaLogin() {
         initComponents();
-        
+
         conexao = ModuloConexao.conector();
-         
+
         if (conexao != null) {
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/devworks/icones/dbok.png")));
         } else {
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/devworks/icones/dberro.png")));
-            
+
         }
-        
-    }
-    
-    
-     public void logar() {
-        
-       
-        String sql = null ;
-        
-       
-        try {
-            
-            //decidir qual tabela ele vai consultar para login atraves da comboBox de adm ou colab
-            
-          sql = "select * from usuarios where login =? and senha=?";
-        
-              //preparar a consulta no sql atravaes do que é digitado substituindo pelo interrogação 
-            pst = conexao.prepareStatement(sql);
-            pst.setString(1, txtUser.getText());
-           String senha = new String(txtSenha.getPassword());
-           
-           pst.setString(2, senha);
-            //executa a query do mysql
-            rs = pst.executeQuery();
-            //se tiver usuario E senkha correspondente
-            if (rs.next()) {
-                
-                TelaPrincipal principal = new TelaPrincipal();
-                principal.setVisible(true);
-                    
-                    //fecha tela de login
-                this.dispose();
-                conexao.close();
-                
-                
-            } else {
-              
-                //mostrando caixa de dialogo de usuario ou senha errado
-                JOptionPane.showMessageDialog(null, "usuario ou senha inválido");
-                }
-            
-            
-        } catch (Exception e) {
-              
-            JOptionPane.showMessageDialog(null, "Caro usuário, houve um erro na execução da"
-                   + " ferramenta, copie e cole o codigo abaixo e mande para o"
-                   + " desenvolvedor. \n \n" +e+ " \n \n email do desenvolvedor:"
-                   + " luiz.albuquerque@braservpetroleo.com.br");
-              }
-        
-     
+
     }
 
- 
+    public void logar() {
+
+        String sql = null;
+
+        try {
+
+            //decidir qual tabela ele vai consultar para login atraves da comboBox de adm ou colab
+            sql = "select * from usuarios where login =? and senha=?";
+
+            //preparar a consulta no sql atravaes do que é digitado substituindo pelo interrogação 
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtUser.getText());
+            String senha = new String(txtSenha.getPassword());
+
+            pst.setString(2, senha);
+            //executa a query do mysql
+            rs = pst.executeQuery();
+            //se tiver usuario E sennha correspondente
+            if (rs.next()) {
+
+                //obter o campo perfil  para saber se é ou nao Admin
+                String perfil = rs.getString(6); //6 é o numero correspondente ao campo "perfil" no banco
+
+                //tratamento do perfil
+                if (perfil.equals("admin")) {
+
+                    TelaPrincipal principal = new TelaPrincipal();
+                    principal.setVisible(true);
+                    TelaPrincipal.menRel.setEnabled(true);
+                    TelaPrincipal.menCadUsu.setEnabled(true);
+
+                    //fecha tela de login
+                    this.dispose();
+                } else {
+
+                    TelaPrincipal principal = new TelaPrincipal();
+                    principal.setVisible(true);
+
+                    //fecha tela de login
+                    this.dispose();
+                }
+                conexao.close();
+
+            } else {
+
+                //mostrando caixa de dialogo de usuario ou senha errado
+                JOptionPane.showMessageDialog(null, "usuario ou senha inválido");
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Caro usuário, houve um erro na execução da"
+                    + " ferramenta, copie e cole o codigo abaixo e mande para o"
+                    + " desenvolvedor. \n \n" + e + " \n \n email do desenvolvedor:"
+                    + " luiz.albuquerque@braservpetroleo.com.br");
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -190,9 +197,9 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        
+
         logar();
-        
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

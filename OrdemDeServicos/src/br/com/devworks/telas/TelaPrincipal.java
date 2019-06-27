@@ -76,7 +76,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblData.setText("Data");
 
         menuCadastro.setText("Cadastro");
-        menuCadastro.setEnabled(false);
 
         menCadCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
         menCadCli.setText("Cliente");
@@ -93,15 +92,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menCadUsu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
         menCadUsu.setText("Usuários");
+        menCadUsu.setEnabled(false);
         menuCadastro.add(menCadUsu);
 
         Menu.add(menuCadastro);
 
         menRel.setText("Relatório");
+        menRel.setEnabled(false);
 
         menRelServ.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
         menRelServ.setText("Serviços");
-        menRelServ.setEnabled(false);
         menRel.add(menRelServ);
 
         Menu.add(menRel);
@@ -173,11 +173,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menOpcSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menOpcSairActionPerformed
         // gerar tela de confirmação para sair
-       int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Atenção!", JOptionPane.YES_NO_OPTION);
-       
-       if(sair == JOptionPane.YES_OPTION){
-       System.exit(0);
-       }
+        int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Atenção!", JOptionPane.YES_NO_OPTION);
+        
+        if (sair == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
     }//GEN-LAST:event_menOpcSairActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -238,10 +238,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menAjudaSobre;
     private javax.swing.JMenuItem menCadCli;
     private javax.swing.JMenuItem menCadOs;
-    private javax.swing.JMenuItem menCadUsu;
+    public static javax.swing.JMenuItem menCadUsu;
     private javax.swing.JMenu menOpc;
     private javax.swing.JMenuItem menOpcSair;
-    private javax.swing.JMenu menRel;
+    public static javax.swing.JMenu menRel;
     public static javax.swing.JMenuItem menRelServ;
     public static javax.swing.JMenu menuCadastro;
     // End of variables declaration//GEN-END:variables
