@@ -7,6 +7,7 @@ package br.com.devworks.telas;
 
 import java.sql.*;
 import br.com.devworks.dal.ModuloConexao;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,7 +56,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
                 //obter o campo perfil  para saber se é ou nao Admin
                 String perfil = rs.getString(6); //6 é o numero correspondente ao campo "perfil" no banco
-
+                 String nomeUsuario = rs.getString(2); 
                 //tratamento do perfil
                 if (perfil.equals("admin")) {
 
@@ -63,6 +64,11 @@ public class TelaLogin extends javax.swing.JFrame {
                     principal.setVisible(true);
                     TelaPrincipal.menRel.setEnabled(true);
                     TelaPrincipal.menCadUsu.setEnabled(true);
+                    TelaPrincipal.lblUsuario.setText(nomeUsuario); //bota o nome do usuario da label de usuario
+                    TelaPrincipal.lblUsuario.setForeground(Color.red);
+                    
+                    
+                    
 
                     //fecha tela de login
                     this.dispose();
@@ -70,6 +76,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
                     TelaPrincipal principal = new TelaPrincipal();
                     principal.setVisible(true);
+                    TelaPrincipal.lblUsuario.setText(nomeUsuario);
+                    
 
                     //fecha tela de login
                     this.dispose();
