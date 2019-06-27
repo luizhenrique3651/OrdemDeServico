@@ -64,7 +64,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     principal.setVisible(true);
                     TelaPrincipal.menRel.setEnabled(true);
                     TelaPrincipal.menCadUsu.setEnabled(true);
-                    TelaPrincipal.lblUsuario.setText(nomeUsuario); //bota o nome do usuario da label de usuario
+                    TelaPrincipal.lblUsuario.setText(nomeUsuario + " (Admin)"); //bota o nome do usuario da label de usuario
                     TelaPrincipal.lblUsuario.setForeground(Color.red);
                     
                     

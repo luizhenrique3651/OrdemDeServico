@@ -95,6 +95,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menCadUsu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
         menCadUsu.setText("Usuários");
         menCadUsu.setEnabled(false);
+        menCadUsu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menCadUsuActionPerformed(evt);
+            }
+        });
         menuCadastro.add(menCadUsu);
 
         Menu.add(menuCadastro);
@@ -198,6 +203,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaSobre sobre = new TelaSobre();
         sobre.setVisible(true);
     }//GEN-LAST:event_menAjudaSobreActionPerformed
+
+    private void menCadUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadUsuActionPerformed
+        // Chamam a janela de cadastro de usuario dentro do desktop
+        TelaUsuario user = new TelaUsuario();
+        user.setVisible(true);
+        Jdesktop.add(user);
+        
+    }//GEN-LAST:event_menCadUsuActionPerformed
 
     /**
      * @param args the command line arguments
